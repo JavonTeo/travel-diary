@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+.list-group {
+    flex: 0 0 30%;
+}
+
+.card {
+    background-color: whitesmoke;
+    color: black;
+    min-width: 10px;
+    border-radius: 10px;
+}
+
+.card img {
+    vertical-align: middle;
+    width: 75px;
+    height: 75px;
+    margin: 10px;
+    border-radius: 10px;
+}

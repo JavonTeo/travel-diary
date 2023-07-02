@@ -1,0 +1,33 @@
+.content {
+    max-width: 50%;
+    height: 90vh;
+    background-color: #DCDCDC;
+    padding: 10px;
+    margin-left: 2rem;
+    overflow: scroll;
+}
+
+.line {
+    background-color: orange;
+    height: 2px;
+    margin-top: 5px;
+}
+
+.c-item {
+    height: 360px
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.details-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.details-list span {
+    font-weight: bold;
+}
