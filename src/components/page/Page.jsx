@@ -9,7 +9,7 @@ function Page(props) {
   }
 
   return (
-    <div className="content">
+    <div className="content col-6">
       <h1>{selectedPage.title}</h1>
       {/* <div id="diary-carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
