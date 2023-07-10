@@ -6,7 +6,6 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import AddPopup from "./components/add_page/AddPopup";
 import CardList from "./components/card_list/CardList";
 import Page from "./components/page/Page";
-import "./AppStyles.css";
 
 function App() {
   const [pagesList, setPagesList] = useState([]);
@@ -38,7 +37,7 @@ function App() {
 
   return (
       <div>
-        <div className="container d-flex flex-row justify-content-center align-items-center">
+        <div className="container d-flex justify-content-center align-items-center">
           <CardList pagesList={pagesList} onPageClick={handlePageClick} setOpenPopup={setOpenPopup}/>
           <Page selectedPage={selectedPage} />
         </div>
