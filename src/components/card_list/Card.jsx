@@ -6,12 +6,12 @@ function Card(props) {
   const img = props.img;
 
   return (
-    <div className="card">
-        <div className="row g-0 align-items-center">
-            <div className="col-md-4">
-                <img src={img}/>
+    <div className="card bg-dark-subtle" style={{height: "90px"}}>
+        <div className="row g-0">
+            <div className="col-md-3">
+                <img src={img} className="img-fluid img-thumbnail mw-20"/>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-9">
                 <div className="card-body">
                     <h4 className="card-title m-0">{title}</h4>
                     <a href="#"></a>

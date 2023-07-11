@@ -9,8 +9,8 @@ function Page(props) {
   }
 
   return (
-    <div className="content col-6">
-      <h1>{selectedPage.title}</h1>
+    <div className="content col-8">
+      <h1 className="fw-bold">{selectedPage.title}</h1>
       {/* <div id="diary-carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active c-item">
@@ -62,17 +62,17 @@ function Page(props) {
         </button>
       </div> */}
       <div className="line"></div>
-      <ul className="details-list">
+      <ul className="list-unstyled pl-0">
         <li>
-          <span>Date visited: </span>
+          <span className="fw-bold">Date visited: </span>
           {selectedPage.dateVisited.toDate().toLocaleDateString('en-US', { dateStyle: 'long' })}
         </li>
         <li>
-          <span>Rating: </span>
+          <span className="fw-bold">Rating: </span>
           {selectedPage.rating}
         </li>
       </ul>
-      <h4>Description:</h4>
+      <h4 className="fw-bold">Description:</h4>
       <p>{selectedPage.description}</p>
     </div>
   );

@@ -36,12 +36,12 @@ function App() {
   };
 
   return (
-      <div>
-        <div className="container d-flex justify-content-center align-items-center">
-          <CardList pagesList={pagesList} onPageClick={handlePageClick} setOpenPopup={setOpenPopup}/>
+      <div className="main-container d-flex">
+        <CardList pagesList={pagesList} onPageClick={handlePageClick} setOpenPopup={setOpenPopup}/>
+        <div className="d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>
-        <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/>
+        {/* <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/> */}
       </div>
   );
 }

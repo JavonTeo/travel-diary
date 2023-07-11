@@ -1,9 +1,7 @@
 #body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
-    background-color: #FFFACD;
-    font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  /* background-color: #FFFACD; */
+  background: rgba(0, 0, 0, 0.3) url("src/assets/diary-bg.jpg");
+  background-size: contain;
+  background-blend-mode: darken;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }

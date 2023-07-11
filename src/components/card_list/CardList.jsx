@@ -1,17 +1,19 @@
 import React from "react";
 import Card from "./Card";
 import "./CardStyles.css";
+import Header from "./Header";
 
 function CardList(props) {
   const { pagesList, onPageClick, setOpenPopup } = props;
 
   return (
-    <div className="col-4">
-      <ul className="list-group md-z">
+    <div className="col-4 bg-dark" style={{height: "100vh", width: "400px"}}>
+      <Header />
+      <ul className="list-group">
         {pagesList.map((page) => (
           <li
             key={page.id}
-            className="list-group-item"
+            className="list-group-item bg-dark"
             onClick={() => onPageClick(page)}
           >
             <Card
