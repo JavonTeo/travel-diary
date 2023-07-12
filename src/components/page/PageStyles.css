@@ -1,8 +1,13 @@
 .content {
     height: 90vh;
     padding: 10px;
-    background-color: white;
+    background-color: #FBFCF8;
+    font-family: 'Montserrat', sans-serif;
     overflow: scroll;
+}
+
+.content h1 {
+    font-weight: 800;
 }
 
 .line {

@@ -38,7 +38,7 @@ function App() {
   return (
       <div className="main-container d-flex">
         <CardList pagesList={pagesList} onPageClick={handlePageClick} setOpenPopup={setOpenPopup}/>
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="col-8 d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>
         {/* <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/> */}

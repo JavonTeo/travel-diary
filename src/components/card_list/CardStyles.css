@@ -9,14 +9,13 @@
 .card {
     background-color: whitesmoke;
     color: black;
-    min-width: 10px;
     border-radius: 10px;
 }
 
 .card img {
     vertical-align: middle;
-    width: 75px;
-    height: 75px;
+    width: 55px;
+    height: 55px;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
 }

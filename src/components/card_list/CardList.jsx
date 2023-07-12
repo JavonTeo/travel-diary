@@ -7,7 +7,7 @@ function CardList(props) {
   const { pagesList, onPageClick, setOpenPopup } = props;
 
   return (
-    <div className="col-4 bg-dark" style={{height: "100vh", width: "400px"}}>
+    <div className="bg-dark" style={{height: "100vh", width: "325px"}}>
       <Header />
       <ul className="list-group">
         {pagesList.map((page) => (
