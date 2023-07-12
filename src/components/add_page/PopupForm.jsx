@@ -26,14 +26,18 @@ function PopupForm({ dbCollection }) {
   }
 
   return (
+    <div>
     <form onSubmit={addToDB}>
+      {/* have to make sure space, OR non-number for rating inputs are not allowed */}
         <MDBInput className="mt-3" label='Page Title' id='title' type='text' onChange={(e) => setTitle(e.target.value)} required />
         <Datepicker label='Date visited' updateChange={setDateVisited} />
         <MDBInput className="mt-3" label='Rating' id='typeNumber' type='number' min="1" max="5" onChange={(e) => setRating(Number(e.target.value))} required />
         <MDBTextArea className="mt-3" label='Description' id='textAreaExample' rows={10} onChange={(e) => setDescription(e.target.value)} required />
-        <UploadImageButton />
+        {/* <UploadImageButton /> */}
         <button type="submit" className="btn btn-primary">Submit</button>
     </form>
+    <UploadImageButton title={title} />
+    </div>
   )
 }
 
