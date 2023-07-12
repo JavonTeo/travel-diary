@@ -41,7 +41,7 @@ function App() {
         <div className="col-8 d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>
-        {/* <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/> */}
+        <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/>
       </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
-import Datepicker from './Datepicker';
 import { addDoc, Timestamp } from 'firebase/firestore';
+import Datepicker from './Datepicker';
+import UploadImageButton from './UploadImageButton';
 
 function PopupForm({ dbCollection }) {
   const [title, setTitle] = useState('');
@@ -30,6 +31,7 @@ function PopupForm({ dbCollection }) {
         <Datepicker label='Date visited' updateChange={setDateVisited} />
         <MDBInput className="mt-3" label='Rating' id='typeNumber' type='number' min="1" max="5" onChange={(e) => setRating(Number(e.target.value))} required />
         <MDBTextArea className="mt-3" label='Description' id='textAreaExample' rows={10} onChange={(e) => setDescription(e.target.value)} required />
+        <UploadImageButton />
         <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   )
