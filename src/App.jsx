@@ -15,18 +15,6 @@ function App() {
   const pagesCollectionRef = collection(db, "pages");
 
   // real time collection data
-  // const getPagesList = async () => {
-  //   try {
-  //     const data = await getDocs(pagesCollectionRef);
-  //     const filteredData = data.docs.map((doc) => ({
-  //       ...doc.data(),
-  //       id: doc.id,
-  //     }));
-  //     setPagesList(filteredData);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
   useEffect(() => {
     const unsubscribe = onSnapshot(pagesCollectionRef, (snapshot) => {
       const updatedPagesList = snapshot.docs.map((doc) => ({
@@ -39,15 +27,8 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // onSnapshot(pagesCollectionRef, () => {
-
-  // })
-
-  // useEffect(() => {
-  //   getPagesList();
-  // }, []);
-
   const handlePageClick = (card) => {
+    console.log(card);
     setSelectedPage(card);
   };
 
@@ -57,7 +38,7 @@ function App() {
         <div className="col-8 d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>
-        <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} dbCollection={pagesCollectionRef}/>
+        <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
       </div>
   );
 }

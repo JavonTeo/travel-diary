@@ -15,7 +15,7 @@ function AddPopup(props) {
           close
         </button>
         <h2>New Page</h2>
-        <PopupForm dbCollection={props.dbCollection}/>
+        <PopupForm pagesCollectionRef={props.pagesCollectionRef}/>
       </div>
     </div>
   ) : (
