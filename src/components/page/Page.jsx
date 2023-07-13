@@ -9,8 +9,9 @@ function Page(props) {
   }
 
   return (
-    <div className="content col-8">
+    <div className="content rounded col-8">
       <h1 className="fw-bold">{selectedPage.title}</h1>
+      <img className="col-12" src="../src/assets/eiffel-1.jpg" />
       {/* <div id="diary-carousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active c-item">

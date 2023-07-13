@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     getPagesList();
-  }, []);
+  }, [pagesList]);
 
   const handlePageClick = (card) => {
     setSelectedPage(card);
