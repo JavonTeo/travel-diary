@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "./config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import AddPopup from "./components/add_page/AddPopup";
@@ -14,22 +14,38 @@ function App() {
 
   const pagesCollectionRef = collection(db, "pages");
 
-  const getPagesList = async () => {
-    try {
-      const data = await getDocs(pagesCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
+  // real time collection data
+  // const getPagesList = async () => {
+  //   try {
+  //     const data = await getDocs(pagesCollectionRef);
+  //     const filteredData = data.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }));
+  //     setPagesList(filteredData);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+  useEffect(() => {
+    const unsubscribe = onSnapshot(pagesCollectionRef, (snapshot) => {
+      const updatedPagesList = snapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      setPagesList(filteredData);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+      setPagesList(updatedPagesList);
+    });
 
-  useEffect(() => {
-    getPagesList();
-  }, [pagesList]);
+    return () => unsubscribe();
+  }, []);
+
+  // onSnapshot(pagesCollectionRef, () => {
+
+  // })
+
+  // useEffect(() => {
+  //   getPagesList();
+  // }, []);
 
   const handlePageClick = (card) => {
     setSelectedPage(card);
