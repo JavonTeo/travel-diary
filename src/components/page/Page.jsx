@@ -5,7 +5,7 @@ function Page(props) {
   const selectedPage = props.selectedPage;
 
   if (!selectedPage) {
-    return <h2>Select an item to view details.</h2>;
+    return <h2 className="text-white">Select an item to view its details!</h2>;
   }
 
   return (
