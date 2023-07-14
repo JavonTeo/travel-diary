@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./Card";
 import "./CardStyles.css";
 import Header from "./Header";
 
 function CardList(props) {
-  const { pagesList, onPageClick, setOpenPopup } = props;
-
+  const { pagesList, setSelectedPage, setOpenPopup } = props;
+  const [selectedCard, setSelectedCard] = useState(null);
+  
   return (
-    <div className="bg-dark" style={{height: "100vh", width: "325px"}}>
+    <div className="d-flex flex-column bg-dark" style={{height: "100vh", width: "325px"}}>
       <Header />
-      <ul className="list-group">
+      <ul className="list-group flex-grow-1">
         {pagesList.map((page) => (
           <li
             key={page.id}
             className="list-group-item bg-dark"
-            onClick={() => onPageClick(page)}
           >
             <Card
               title={page.title}
-              img="https://media.istockphoto.com/photos/eiffel-tower-in-spring-picture-id1297043676?b=1&k=20&m=1297043676&s=170667a&w=0&h=kXklVKUeWIw7UWDDYnxMzB3uXS9prFiea3RaRPyB5M0="
+              img={page.imageURLs}
+              isSelected={selectedCard === page}
+              onClick={() => {
+                setSelectedCard(page);
+                setSelectedPage(page);
+              }}
             />
           </li>
         ))}
       </ul>
-      <button onClick={() => setOpenPopup(true)}>Add a new page</button>
+      <div className="d-grid gap-2 mt-auto">
+        <button type="button" className="btn btn-success btn-lg" onClick={() => setOpenPopup(true)}>+ Add a new page</button>
+      </div>
     </div>
   );
 }
 
 export default CardList;
-// img="https://media.istockphoto.com/photos/eiffel-tower-in-spring-picture-id1297043676?b=1&k=20&m=1297043676&s=170667a&w=0&h=kXklVKUeWIw7UWDDYnxMzB3uXS9prFiea3RaRPyB5M0="

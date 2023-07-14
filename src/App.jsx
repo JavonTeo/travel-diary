@@ -27,14 +27,9 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const handlePageClick = (card) => {
-    console.log(card);
-    setSelectedPage(card);
-  };
-
   return (
       <div className="main-container d-flex">
-        <CardList pagesList={pagesList} onPageClick={handlePageClick} setOpenPopup={setOpenPopup}/>
+        <CardList pagesList={pagesList} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
         <div className="col-8 d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>

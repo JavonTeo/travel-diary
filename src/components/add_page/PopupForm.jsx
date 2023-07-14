@@ -5,9 +5,8 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from "uuid";
 import { storage } from "../../config/firebase.js";
 import Datepicker from './Datepicker';
-// import UploadImageButton from './UploadImageButton';
 
-function PopupForm({ pagesCollectionRef }) {
+function PopupForm({ pagesCollectionRef, setOpenPopup }) {
   const [title, setTitle] = useState('');
   const [dateVisited, setDateVisited] = useState('');
   const [rating, setRating] = useState(0);
@@ -24,6 +23,15 @@ function PopupForm({ pagesCollectionRef }) {
   };
 
   const addToDB = async (e) => {
+    const trimmedTitle = title.trim();
+    const trimmedDescription = description.trim();
+
+    // Check if the trimmed values are empty
+    if (trimmedTitle === '' || trimmedDescription === '') {
+      console.log('Input cannot be empty or contain only spaces');
+      return;
+    }
+
     let foundURL = '';
     e.preventDefault();
 
@@ -39,18 +47,21 @@ function PopupForm({ pagesCollectionRef }) {
       imageURLs: foundURL
     }).then(() => {
       e.target.reset(); //TODO: need to propogate downwards to input field in Datepicker
+      setOpenPopup(false);
     })
+    .catch((error) => console.error(error));
   }
 
   return (
-    <form onSubmit={addToDB}>
+    <form className="mx-2" onSubmit={addToDB}>
       {/* have to make sure space inputs are not allowed */}
-        <MDBInput className="mt-3" label='Page Title' id='title' type='text' onChange={(e) => setTitle(e.target.value)} required />
+        <MDBInput className="w-50 mt-3" label='Page Title' id='title' type='text' onChange={(e) => setTitle(e.target.value)} required />
         <Datepicker label='Date visited' updateChange={setDateVisited} />
         <MDBInput className="mt-3" label='Rating' id='typeNumber' type='number' min="1" max="5" onChange={(e) => setRating(Number(e.target.value))} required />
-        <MDBTextArea className="mt-3" label='Description' id='textAreaExample' rows={10} onChange={(e) => setDescription(e.target.value)} required />
-        <input type="file" onChange={(e) => setImageUpload(e.target.files[0])} />
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <MDBTextArea className="my-3" label='Description' id='textAreaExample' rows={10} onChange={(e) => setDescription(e.target.value)} required />
+        <label htmlFor="formFile" className="form-label">Choose a cover photo</label>
+        <input className="form-control" type="file" id="formFile" onChange={(e) => setImageUpload(e.target.files[0])} />
+        <button type="submit" className="my-3 btn btn-primary">Submit</button>
     </form>
   )
 }
