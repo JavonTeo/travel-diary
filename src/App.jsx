@@ -3,6 +3,7 @@ import { db } from "./config/firebase";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./AppStyles.css";
 import AddPopup from "./components/add_page/AddPopup";
 import CardList from "./components/card_list/CardList";
 import Page from "./components/page/Page";
