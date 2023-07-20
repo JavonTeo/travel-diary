@@ -1,8 +1,8 @@
 import { auth, googleProvider } from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from "react";
 
-export function Auth() {
+function SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -10,7 +10,7 @@ export function Auth() {
 
     const signIn = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password);
         } catch (err) {
             console.error(err);
         }
@@ -32,15 +32,20 @@ export function Auth() {
         }
     }
 
+//     return (
+//         <div>
+//             <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+//             <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+//             <button onClick={signIn}>Sign In</button>
+
+//             <button onClick={signInWithGoogle}>Sign In with Google</button>
+
+//             <button onClick={logOut}>Log Out</button>
+//         </div>
+//     );
     return (
-        <div>
-            <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={signIn}>Sign In</button>
-
-            <button onClick={signInWithGoogle}>Sign In with Google</button>
-
-            <button onClick={logOut}>Log Out</button>
-        </div>
+        <h1>SIGN IN</h1>
     );
 }
+
+export default SignIn;
