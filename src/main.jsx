@@ -1,33 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes, redirect } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import App from "./App";
-import Auth from "./components/auth/Auth";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+// src
+import App from "./components/home/App";
+import Welcome from "./components/authentication/Welcome";
+import LogIn from "./components/authentication/LogIn";
+import SignUp from "./components/authentication/SignUp";
+import PrivateRoute from "./components/authentication/PrivateRoute";
+import { AuthProvider } from "./components/authentication/AuthContextProvider";
 
 function Main() {
-  const [user, setUser] = useState(null);
-  console.log(user);
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
-    return () => unsubscribe();
-  }, []);
-
   return (
+    <AuthProvider>
       <Routes>
-        <Route path="/" element={user ? <App /> : <Navigate to="/auth"/>} />
-        <Route path="/auth" element={<Auth />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <PrivateRoute>
+              <App />
+            </PrivateRoute>
+          }
+        />
+        <Route exact path="/welcome" element={<Welcome />} />
+        <Route exact path="/logIn" element={<LogIn />} />
+        <Route exact path="/signUp" element={<SignUp />} />
       </Routes>
+    </AuthProvider>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <BrowserRouter>
-//     <Main />
-//   </BrowserRouter>
-// );
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <Main />
+  </BrowserRouter>
+);

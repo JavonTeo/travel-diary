@@ -3,8 +3,10 @@ import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
 import { addDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from "uuid";
-import { storage } from "../../config/firebase.js";
-import Datepicker from './Datepicker';
+
+// components
+import Datepicker from './Datepicker.jsx';
+import { storage } from '../../../config/firebase.js';
 
 function PopupForm({ pagesCollectionRef, setOpenPopup }) {
   const [title, setTitle] = useState('');

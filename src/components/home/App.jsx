@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { db } from "./config/firebase";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+
+// components
+import { auth, db } from "../../config/firebase";
 import "./AppStyles.css";
-import AddPopup from "./components/add_page/AddPopup";
-import CardList from "./components/card_list/CardList";
-import Page from "./components/page/Page";
+import CardList from "./card_list/CardList";
+import Page from "./page/Page";
+import AddPopup from "./addPage_popup/AddPopup";
 
 function App() {
   const [pagesList, setPagesList] = useState([]);
@@ -14,6 +17,16 @@ function App() {
   const [openPopup, setOpenPopup] = useState(false);
 
   const pagesCollectionRef = collection(db, "pages");
+
+  const logOut = async () => {
+    try {
+        await signOut(auth);
+        console.log("logged Out");
+        //to do: check how to edit the currentUser context.
+    } catch (err) {
+        console.error(err);
+    }
+  }
 
   // real time collection data
   useEffect(() => {
@@ -31,9 +44,10 @@ function App() {
   return (
       <div className="main-container d-flex">
         <CardList pagesList={pagesList} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
-        <div className="col-8 d-flex justify-content-center align-items-center">
+        <div className="col-9 d-flex justify-content-center align-items-center">
           <Page selectedPage={selectedPage} />
         </div>
+        <button className="btn btn-warning position-fixed top-0 end-0 m-2" onClick={logOut}>Sign out</button>
         <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
       </div>
   );
