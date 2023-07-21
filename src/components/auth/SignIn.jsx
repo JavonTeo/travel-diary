@@ -11,6 +11,7 @@ function SignIn() {
     const signIn = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            console.log("done");
         } catch (err) {
             console.error(err);
         }
@@ -27,24 +28,20 @@ function SignIn() {
     const logOut = async () => {
         try {
             await signOut(auth);
+            console.log("logged out");
         } catch (err) {
             console.error(err);
         }
     }
 
-//     return (
-//         <div>
-//             <input placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-//             <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-//             <button onClick={signIn}>Sign In</button>
-
-//             <button onClick={signInWithGoogle}>Sign In with Google</button>
-
-//             <button onClick={logOut}>Log Out</button>
-//         </div>
-//     );
     return (
-        <h1>SIGN IN</h1>
+        <div className="d-flex flex-column">
+            <input className="my-1" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+            <input className="my-1" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+            <button className="my-1" onClick={signIn}>Sign In</button>
+            <button className="my-1" onClick={signInWithGoogle}>Sign In with Google</button>
+            <button className="my-1" onClick={logOut}>Log Out</button>
+        </div>
     );
 }
 
