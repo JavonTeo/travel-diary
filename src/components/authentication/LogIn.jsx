@@ -28,15 +28,6 @@ function LogIn() {
         }
     };
 
-    const logOut = async () => {
-        try {
-            await signOut(auth);
-            console.log("logged out");
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
     return (
         <div className="d-flex flex-column justify-content-center align-content-center mx-auto col-2" style={{ height: "100vh" }}>
             <h1>Log In</h1>
@@ -44,7 +35,6 @@ function LogIn() {
             <input className="my-1" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)}/>
             <button className="my-1 btn btn-success rounded" onClick={logIn}>Log In</button>
             <button className="my-1 btn btn-success rounded" onClick={logInWithGoogle}>Log In with Google</button>
-            <button className="my-1 btn btn-success rounded" onClick={logOut}>Log Out</button>
         </div>
     );
 }
