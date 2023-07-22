@@ -9,7 +9,7 @@ function Welcome() {
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: "100vh" }}>
-            <img className="my-1" src="/src/assets/notebook.gif" style={{ width: "80px", height: "auto" }}/>
+            <img className="my-1" src="/static/images/notebook.gif" style={{ width: "80px", height: "auto" }}/>
             <p>Welcome to Travel Diary</p>
             <p>Log in with your account to continue</p>
             <div>
