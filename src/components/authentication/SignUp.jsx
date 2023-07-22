@@ -1,6 +1,9 @@
-import { auth, googleProvider } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { React, useState } from "react";
+
+// src
+import { auth } from "../../config/firebase";
+import "./AuthenticationSitesStyles.css";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -22,21 +25,21 @@ function SignUp() {
 
   return (
     <form
-      className="d-flex flex-column justify-content-center align-content-center mx-auto col-2"
+      className="d-flex flex-column justify-content-center align-content-center mx-auto col-2 auth-font"
       style={{ height: "100vh" }}
       onSubmit={signUp}
     >
       <h1>Create Account</h1>
       <input
         type="email"
-        placeholder="Enter your email"
+        placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="my-1"
       ></input>
       <input
         type="password"
-        placeholder="Enter your password"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className="my-1"
