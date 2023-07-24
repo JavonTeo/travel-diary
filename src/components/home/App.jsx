@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
@@ -10,13 +10,19 @@ import "./AppStyles.css";
 import CardList from "./card_list/CardList";
 import Page from "./page/Page";
 import AddPopup from "./addPage_popup/AddPopup";
+import { AuthContext } from "../authentication/AuthContextProvider";
 
 function App() {
   const [pagesList, setPagesList] = useState([]);
   const [selectedPage, setSelectedPage] = useState(null);
   const [openPopup, setOpenPopup] = useState(false);
 
-  const pagesCollectionRef = collection(db, "pages");
+  const { currentUser } = useContext(AuthContext);
+  const currentUserID = currentUser.uid;
+  // console.log(currentUserID);
+  const pagesCollectionRef = collection(db, `pages`);
+  // const pagesCollectionRef = collection(db, `${currentUserID}`);
+  console.log(pagesCollectionRef);
 
   const logOut = async () => {
     try {
