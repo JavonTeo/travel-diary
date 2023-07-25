@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 // components
@@ -19,20 +19,7 @@ function App() {
 
   const { currentUser } = useContext(AuthContext);
   const currentUserID = currentUser.uid;
-  // console.log(currentUserID);
-  const pagesCollectionRef = collection(db, `pages`);
-  // const pagesCollectionRef = collection(db, `${currentUserID}`);
-  console.log(pagesCollectionRef);
-
-  const logOut = async () => {
-    try {
-        await signOut(auth);
-        console.log("logged Out");
-        //to do: check how to edit the currentUser context.
-    } catch (err) {
-        console.error(err);
-    }
-  }
+  const pagesCollectionRef = collection(db, `diaries/${currentUserID}/pages`);
 
   // real time collection data
   useEffect(() => {
@@ -47,15 +34,25 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      console.log("logged Out");
+      //to do: check how to edit the currentUser context.
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
-      <div className="main-container d-flex">
-        <CardList pagesList={pagesList} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
-        <div className="col-9 d-flex justify-content-center align-items-center">
-          <Page selectedPage={selectedPage} />
-        </div>
-        <button className="btn btn-warning position-fixed top-0 end-0 m-2" onClick={logOut}>Sign out</button>
-        <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
-      </div>
+    <div className="main-container d-flex">
+    <CardList pagesList={pagesList} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
+    <div className="col-9 d-flex justify-content-center align-items-center">
+      <Page selectedPage={selectedPage} />
+    </div>
+    <button className="btn btn-warning position-fixed top-0 end-0 m-2" onClick={logOut}>Sign out</button>
+    <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
+  </div>
   );
 }
 

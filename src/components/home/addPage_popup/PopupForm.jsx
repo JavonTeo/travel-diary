@@ -16,6 +16,7 @@ function PopupForm({ pagesCollectionRef, setOpenPopup }) {
   const [imageURLs, setImageURLs] = useState('');
 
   const [imageUpload, setImageUpload] = useState(null);
+  
   const uploadFile = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${title + v4()}/${imageUpload.name + v4()}`);
