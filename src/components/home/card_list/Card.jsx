@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CardStyles.css";
+import { deleteDoc, doc } from "firebase/firestore";
 
 function Card(props) {
-  const { title, img, isSelected, onClick } = props;
+  const { id, title, img, isSelected, onClick } = props;
+
+  function handleDeleteClick(e) {
+      e.stopPropagation();
+      console.log(id);
+      // deleteDoc(doc())
+  }
 
   return (
     <div
@@ -18,8 +25,10 @@ function Card(props) {
         </div>
         <div className="col-md-10 d-flex align-items-center">
           <div className="card-body">
+            <div className="d-flex flex-row justify-content-between align-items-center">
             <h5 className="fw-semibold">{title}</h5>
-            <a href="#"></a>
+            <button className="delete-button" onClick={handleDeleteClick}><i className="fa fa-trash-can"></i></button>
+            </div>
           </div>
         </div>
       </div>

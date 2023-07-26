@@ -8,14 +8,16 @@ export default function StarsRating({rating}) {
             rating -= 1;
         }
     }
+    let id = 0;
 
     return (
         <span>
             {
                 starsArr.map(isRated => {
+                    id += 1;
                     return isRated
-                    ? <i className="fa fa-star text-warning"></i>
-                    : <i className="fa fa-star"></i>
+                    ? <i key={id} className="fa fa-star text-warning"></i>
+                    : <i key={id}className="fa fa-star"></i>
                 })
             }
         </span>

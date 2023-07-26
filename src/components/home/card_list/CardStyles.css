@@ -22,3 +22,15 @@
 .clicked {
     background-color: blue;
 }
+
+.delete-button {
+    color: lightslategrey;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.delete-button:hover,
+.delete-button:active {
+    color: #007FFF;
+}
