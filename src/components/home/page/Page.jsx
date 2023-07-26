@@ -1,5 +1,6 @@
 import React from "react";
 import "./PageStyles.css";
+import StarsRating from "./StarsRating";
 
 function Page(props) {
   const selectedPage = props.selectedPage;
@@ -70,7 +71,7 @@ function Page(props) {
         </li>
         <li>
           <span className="fw-bold">Rating: </span>
-          {selectedPage.rating}
+          <StarsRating rating={selectedPage.rating} />
         </li>
       </ul>
       <h4 className="fw-bold">Description:</h4>
