@@ -17,7 +17,7 @@ function CardList(props) {
             className="list-group-item bg-dark"
           >
             <Card
-              id={page.id}
+              pageId={page.id}
               title={page.title}
               img={page.imageURLs}
               isSelected={selectedCard === page}

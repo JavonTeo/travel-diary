@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CardStyles.css";
 import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../config/firebase";
+import { AuthContext } from "../../authentication/AuthContextProvider";
 
 function Card(props) {
-  const { id, title, img, isSelected, onClick } = props;
+  const { pageId, title, img, isSelected, onClick } = props;
+
+  const { currentUser } = useContext(AuthContext);
+  const currentUserID = currentUser.uid;
 
   function handleDeleteClick(e) {
       e.stopPropagation();
-      console.log(id);
-      // deleteDoc(doc())
+      console.log(pageId);
+      deleteDoc(doc(db, `diaries/${currentUserID}/pages`, pageId));
   }
 
   return (

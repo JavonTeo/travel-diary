@@ -20,7 +20,6 @@ function App() {
   const { currentUser } = useContext(AuthContext);
   const currentUserID = currentUser.uid;
   const pagesCollectionRef = collection(db, `diaries/${currentUserID}/pages`);
-  // export const pagesCollectionRefContext = useContext(pagesCollectionRef);
 
   // real time collection data
   useEffect(() => {
