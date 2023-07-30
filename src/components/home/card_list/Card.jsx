@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import "./CardStyles.css";
 import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../../config/firebase";
+import { db, storage } from "../../../config/firebase";
 import { AuthContext } from "../../authentication/AuthContextProvider";
+import { deleteObject, listAll, ref } from "firebase/storage";
 
 function Card(props) {
   const { pageId, title, img, isSelected, onClick } = props;
@@ -10,10 +11,33 @@ function Card(props) {
   const { currentUser } = useContext(AuthContext);
   const currentUserID = currentUser.uid;
 
+  const deleteImagesFolder = async (folderPath) => {
+    try {
+      const folderRef = ref(storage, folderPath);
+      const folderFiles = await listAll(folderRef);
+  
+      // Delete all files in the folder
+      await Promise.all(folderFiles.items.map((file) => deleteObject(file)));
+  
+      // Delete the folder itself
+      await deleteObject(folderRef);
+  
+      console.log("Folder deleted successfully!");
+    } catch (error) {
+      if (error.code === "storage/object-not-found") {
+        // The folder or file does not exist
+        console.log("Folder or file not found/already deleted:", error.message);
+      } else {
+        console.error("Error deleting folder:", error);
+      }
+    }
+  };
+
   function handleDeleteClick(e) {
       e.stopPropagation();
       console.log(pageId);
       deleteDoc(doc(db, `diaries/${currentUserID}/pages`, pageId));
+      deleteImagesFolder(`images/${currentUserID}/${title}`);
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
 import { addDoc, Timestamp } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 // components
 import Datepicker from './Datepicker.jsx';
 import { storage } from '../../../config/firebase.js';
+import { AuthContext } from '../../authentication/AuthContextProvider.jsx';
 
 function PopupForm({ pagesCollectionRef, setOpenPopup }) {
   const [title, setTitle] = useState('');
@@ -16,10 +17,14 @@ function PopupForm({ pagesCollectionRef, setOpenPopup }) {
   const [imageURLs, setImageURLs] = useState('');
 
   const [imageUpload, setImageUpload] = useState(null);
+
+  const { currentUser } = useContext(AuthContext);
+  const currentUserID = currentUser.uid;
   
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${title + v4()}/${imageUpload.name + v4()}`);
+    const [ fileName, fileExtension ] = imageUpload.name.split(".");
+    const imageRef = ref(storage, `images/${currentUserID}/${title}/${fileName + v4() + "." + fileExtension}`);
     return uploadBytes(imageRef, imageUpload).then((snapshot) => {
       return getDownloadURL(snapshot.ref);
     });
