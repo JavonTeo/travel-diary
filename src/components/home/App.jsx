@@ -9,7 +9,7 @@ import { auth, db } from "../../config/firebase";
 import "./AppStyles.css";
 import CardList from "./card_list/CardList";
 import Page from "./page/Page";
-import AddPopup from "./addPage_popup/AddPopup";
+import Popup from "./addPage_popup/Popup";
 import { AuthContext } from "../authentication/AuthContextProvider";
 
 function App() {
@@ -46,12 +46,12 @@ function App() {
 
   return (
     <div className="main-container d-flex">
-    <CardList pagesList={pagesList} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
+    <CardList pagesList={pagesList} selectedPage={selectedPage} setSelectedPage={setSelectedPage} setOpenPopup={setOpenPopup}/>
     <div className="col-9 d-flex justify-content-center align-items-center">
-      <Page selectedPage={selectedPage} />
+      <Page selectedPage={selectedPage} setSelectedPage={setSelectedPage}/>
     </div>
     <button className="btn btn-warning position-fixed top-0 end-0 m-2" onClick={logOut}>Sign out</button>
-    <AddPopup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
+    <Popup openPopup={openPopup} setOpenPopup={setOpenPopup} pagesCollectionRef={pagesCollectionRef}/>
   </div>
   );
 }

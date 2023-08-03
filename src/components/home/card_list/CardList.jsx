@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "./Card";
 import "./CardStyles.css";
 import Header from "./Header";
 
 function CardList(props) {
-  const { pagesList, setSelectedPage, setOpenPopup } = props;
-  const [selectedCard, setSelectedCard] = useState(null);
+  const { pagesList, selectedPage, setSelectedPage, setOpenPopup } = props;
   
   return (
     <div className="d-flex flex-column bg-dark" style={{height: "100vh", width: "325px"}}>
@@ -20,11 +19,8 @@ function CardList(props) {
               pageId={page.id}
               title={page.title}
               img={page.imageURLs}
-              isSelected={selectedCard === page}
-              onClick={() => {
-                setSelectedCard(page);
-                setSelectedPage(page);
-              }}
+              isSelected={selectedPage === page}
+              onClick={() => setSelectedPage(page)}
             />
           </li>
         ))}

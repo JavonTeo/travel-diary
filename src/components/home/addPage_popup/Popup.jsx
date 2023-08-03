@@ -1,7 +1,7 @@
 import React from "react";
 import PopupForm from "./PopupForm";
 
-function AddPopup(props) {
+function Popup(props) {
   return props.openPopup ? (
     <div
       className="position-fixed top-0 min-vh-100 col-12 d-flex justify-content-center align-items-center"
@@ -26,4 +26,4 @@ function AddPopup(props) {
   );
 }
 
-export default AddPopup;
+export default Popup;

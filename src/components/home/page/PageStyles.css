@@ -4,6 +4,12 @@
     background-color: #FBFCF8;
     font-family: 'Montserrat', sans-serif;
     overflow: scroll;
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+.content::-webkit-scrollbar{
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
 }
 
 .content h1 {

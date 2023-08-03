@@ -10,7 +10,13 @@ function Page(props) {
   }
 
   return (
-    <div className="content rounded col-8">
+    <div className="content position-relative rounded col-8">
+      <button
+        type="button"
+        className="btn-close position-absolute top-0 end-0 m-2"
+        aria-label="Close"
+        onClick={() => props.setSelectedPage(null)}
+      ></button>
       <h1 className="fw-bold">{selectedPage.title}</h1>
       <img className="col-12 rounded" src={selectedPage.imageURLs} />
       {/* <div id="diary-carousel" className="carousel slide" data-ride="carousel">
@@ -67,7 +73,9 @@ function Page(props) {
       <ul className="list-unstyled pl-0">
         <li>
           <span className="fw-bold">Date visited: </span>
-          {selectedPage.dateVisited.toDate().toLocaleDateString('en-US', { dateStyle: 'long' })}
+          {selectedPage.dateVisited
+            .toDate()
+            .toLocaleDateString("en-US", { dateStyle: "long" })}
         </li>
         <li>
           <span className="fw-bold">Rating: </span>
